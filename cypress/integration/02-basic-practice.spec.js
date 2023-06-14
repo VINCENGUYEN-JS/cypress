@@ -87,7 +87,7 @@ describe('Basic Practice', () => {
     });
   });
 
-  describe.only('Mark individual item as packed', () => {
+  describe('Mark individual item as packed', () => {
     it('should move an individual item from "Unpacked" to "Packed"', () => {
       cy.get('[data-test="items"] li label')
         .first()
