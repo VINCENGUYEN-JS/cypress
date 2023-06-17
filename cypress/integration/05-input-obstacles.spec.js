@@ -13,34 +13,41 @@ describe('Input obstacles', () => {
   });
 
   it('should control a select input', () => {
-    cy.get('[data-test="select-input"]');
-    cy.get('[data-test="select-result"]');
+    const selectValue = 'Hulk';
+    cy.get('[data-test="select-input"]').as('select');
+    cy.get('[data-test="select-result"]').as('selectResult');
+    cy.get('@select').select(selectValue);
+    cy.get('@selectResult').contains(selectValue);
   });
 
   it('should find and control a checkbox input', () => {
-    cy.get('[data-test="checkbox-tomato"]');
-    cy.get('[data-test="checkbox-result"]').contains('(None)');
-    cy.get('[data-test="checkbox-result"]');
+    cy.get('[data-test="checkbox-tomato"]').as('checkbox');
+    cy.get('[data-test="checkbox-result"]').as('checkBoxResult').contains('(None)');
+    cy.get('@checkbox').check();
+    cy.get('[data-test="checkbox-result"]').contains('Tomato');
   });
 
   it('should find and control a radio input', () => {
-    cy.get('[data-test="radio-ringo"]');
-    cy.get('[data-test="radio-result"]');
+    cy.get('[data-test="radio-ringo"]').check();
+    cy.get('[data-test="radio-result"]').contains('Ringo');
   });
 
   it('should find and control a color input', () => {
-    cy.get('[data-test="color-input"]');
-    cy.get('[data-test="color-result"]');
+    const colorInput = '#0000ff';
+    cy.get('[data-test="color-input"]').invoke('val', colorInput).trigger('input');
+    cy.get('[data-test="color-result"]').contains(colorInput);
   });
 
   it('should find and control a date input', () => {
-    cy.get('[data-test="date-input"]');
-    cy.get('[data-test="date-result"]');
+    const dateInput = '2021-12-17';
+    cy.get('[data-test="date-input"]').invoke('val', dateInput).trigger('input');
+    cy.get('[data-test="date-result"]').contains(dateInput);
   });
 
-  it('should find and control a range input', () => {
-    cy.get('[data-test="range-input"]');
-    cy.get('[data-test="range-result"]');
+  it.only('should find and control a range input', () => {
+    const rangeInput = 7;
+    cy.get('[data-test="range-input"]').invoke('val', rangeInput).trigger('input');
+    cy.get('[data-test="range-result"]').contains(rangeInput);
   });
 
   it('should find and control a file input', () => {
