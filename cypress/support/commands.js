@@ -10,7 +10,20 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('signIn', (email, password) => {
+  cy.visit('/echo-chamber/sign-in');
+  cy.get('[data-test="sign-in-email"]').type(email);
+  cy.get('[data-test="sign-in-password"]').type(password);
+  cy.get('[data-test="sign-in-submit"]').click();
+});
+
+Cypress.Commands.add('signUp', (email, password) => {
+  cy.visit('/echo-chamber/sign-up');
+  cy.get('[data-test="sign-up-email"]').type(email);
+  cy.get('[data-test="sign-up-password"]').type(password);
+  cy.get('[data-test="sign-up-submit"]').click();
+});
+
 //
 //
 // -- This is a child command --
